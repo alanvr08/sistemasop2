@@ -15,10 +15,10 @@
 
 int main()
 {
-   int running = 1;
+   int running = 1,n;
    void *shared_memory = (void *)0;
    struct shared_use_st *shared_stuff;
-   char buffer[BUFSIZ];
+   int buffer[BUFSIZ];
    int shmid;
    shmid = shmget((key_t)1234, sizeof(struct shared_use_st), 0666 | IPC_CREAT);
    if (shmid == -1) {
@@ -39,14 +39,14 @@ int main()
          sleep(1);
          printf("espeando algun cliente...\n");
       }
-      printf("Escribe algun texto: ");
-		int numero;
-      scanf(" %d ",&numero);
-      shared_stuff->some_int[0] = numero;
+      printf("Escribe algun numero: ");
+      scanf("%d",&n);
+    
+      shared_stuff->some_int[0]=n;
       shared_stuff->written_by_you = 1;
-      if (strncmp(buffer, "-1", 3) == 0) {
-         running = 0;
-      }
+      if (shared_stuff->some_int[0] == -1) {
+	    running = 0;
+        }
    }
    if (shmdt(shared_memory) == -1) {
       fprintf(stderr, "Error en shmdt\n");
