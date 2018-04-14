@@ -5,9 +5,9 @@
 */
 
 
-#define int_SZ 1
+#define SZ 1
 
 struct shared_use_st {
    int  written_by_you;
-   int some_int[int_SZ];
+   int some_int[SZ];
 };
