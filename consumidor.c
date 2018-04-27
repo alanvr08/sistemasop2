@@ -46,7 +46,7 @@ int main()
    while (running) {
       if (shared_stuff->written_by_you) {
       
-      n=shared_stuff->some_int [0];
+      num=shared_stuff->some_int [0];
          if(num==-1){
             break;
                  }
